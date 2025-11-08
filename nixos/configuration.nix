@@ -144,8 +144,11 @@ mpv
 fastfetch
 kitty
 gh
+catppuccin-cursors.mochaFlamingo
 playerctl
+zed-editor
   ];
+
 
 
 	

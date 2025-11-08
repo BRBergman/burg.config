@@ -44,7 +44,7 @@
     "exec": "$HOME/bin/spotify.sh"
   },
   "clock": {
-    "format": "<span foreground='#C6AAE8'></span> {:%A - %B %d, %Y - %R}",
+    "format": "<span foreground='#C6AAE8'></span> {:%A - %B %d, %Y - %I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
   "battery": {
@@ -90,5 +90,5 @@
         
         "on-click-right": "killall wofi",
         "tooltip": false
-    },
+    }
 }
