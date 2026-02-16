@@ -1,5 +1,5 @@
 git clone https://github.com/BRBergman/burg.config.git
 mkdir ~/.config
-cd burg.config
-mv -f * ~/.config
+mv -f burg.config/* ~/.config
+rm burg.config
 echo remember to move the nix files!!!
