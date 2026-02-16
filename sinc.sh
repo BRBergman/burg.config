@@ -1,1 +1,1 @@
-cp /etc/nixos/* ~/.config/nixos/
+cp -f /etc/nixos/* ~/.config/nixos/
