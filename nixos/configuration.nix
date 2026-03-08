@@ -111,7 +111,8 @@ fonts.packages = with pkgs; [
 
   # Install firefox.
   programs.firefox.enable = true;
- 
+ #Install wireshark.
+programs.wireshark.enable
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
