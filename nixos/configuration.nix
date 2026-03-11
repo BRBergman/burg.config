@@ -55,13 +55,12 @@ services.displayManager.ly.enable = true;
     variant = "";
   };
 #me things
- 
+ services.desktopManager.plasma6.enable = true;
 
 programs.hyprland = {
   enable = true;
   xwayland.enable = true;
  };
-programs.plasma.enable = true;
 
  environment.sessionVariables = {
   NIXOS_OZONE_WL = "1";
@@ -113,7 +112,7 @@ fonts.packages = with pkgs; [
   # Install firefox.
   programs.firefox.enable = true;
  #Install wireshark.
-programs.wireshark.enable
+programs.wireshark.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -130,7 +129,6 @@ wofi
 wofi-power-menu
 networkmanagerapplet
 swww
-vscode
 git
 psmisc
 cava
@@ -149,8 +147,11 @@ gh
 catppuccin-cursors.mochaFlamingo
 playerctl
 zed-editor
+python313Packages.nomadnet
+kdePackages.spectacle
   ];
-
+services.gvfs.enable = true;
+services.udisks2.enable = true;
 
 
 	
