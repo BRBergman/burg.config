@@ -27,6 +27,8 @@ require("lazy").setup({
   spec = {
 	{ "rose-pine/neovim", name = "rose-pine" },
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+	{'ishan9299/nvim-solarized-lua'},
+
 	{
   "Saecki/crates.nvim",
   event = { "BufRead Cargo.toml" },
@@ -153,7 +155,11 @@ vim.o.relativenumber = true
     fuzzy = { implementation = "prefer_rust_with_warning" }
   },
   opts_extend = { "sources.default" }
-}
+},
+{
+  'stevearc/conform.nvim',
+  opts = {},
+},{ "ibhagwan/fzf-lua" }
 
 
 -- add your plugins here
@@ -164,4 +170,25 @@ vim.o.relativenumber = true
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-vim.cmd("colorscheme catppuccin-latte")
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua" },
+    -- Conform will run multiple formatters sequentially
+    python = { "isort", "black" },
+    -- You can customize some of the format options for the filetype (:help conform.format)
+    rust = { "rustfmt", lsp_format = "fallback" },
+    -- Conform will run the first available formatter
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})
+vim.cmd("colorscheme solarized")
+vim.o.background = 'light'
+    vim.o.termguicolors = true
+vim.keymap.set('n', 'fzf', "<cmd>FzfLua<CR>", {noremap = true})
+vim.g.lazyvim_picker = "fzf"
