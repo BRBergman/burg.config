@@ -149,10 +149,14 @@ playerctl
 zed-editor
 python313Packages.nomadnet
 kdePackages.spectacle
-  ];
+qbittorrent
+wireguard-tools protonvpn-gui  
+xclip
+];
 services.gvfs.enable = true;
 services.udisks2.enable = true;
 
+networking.firewall.checkReversePath = false;
 
 	
 programs.steam.enable = true;	
@@ -163,7 +167,33 @@ users.defaultUserShell = pkgs.fish;
 programs.yubikey-touch-detector.libnotify = true;
 xdg.portal.enable = true;
 xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # Some programs need SUID wrappers, can be configured further or are
+  
+programs.neovim = {
+  enable = true;
+  defaultEditor = true;
+};
+      # Exposing the nessecary ports in order to interact with i2p from outside the container
+      networking.firewall.allowedTCPPorts = [
+        7656 # default sam port
+        7070 # default web interface port
+        4447 # default socks proxy port
+        4444 # default http proxy port
+      ];
+
+      services.i2pd = {
+        enable = true;
+        address = "127.0.0.1"; # you may want to set this to 0.0.0.0 if you are planning to use an ssh tunnel
+        proto = {
+          http.enable = true;
+          socksProxy.enable = true;
+          httpProxy.enable = true;
+          sam.enable = true;
+        };
+      };
+
+
+
+# Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
