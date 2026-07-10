@@ -69,7 +69,13 @@ fonts.packages = with pkgs; [
     font-awesome # This refers to the OTF Font Awesome package
     nerd-fonts.jetbrains-mono
     font-awesome
-  ];
+	carlito
+    dejavu_fonts
+    ipafont
+    kochi-substitute
+    source-code-pro
+    ttf_bitstream_vera
+];
 
 
 #users.defaultUserShell = pkgs.fish;
@@ -108,23 +114,33 @@ fonts.packages = with pkgs; [
     #  thunderbird
     ];
   };
-
   # Install firefox.
   programs.firefox.enable = true;
  #Install wireshark.
-programs.wireshark.enable = true;
+programs.wireshark = {
+	enable = true;
+	dumpcap.enable = true;
+	usbmon.enable = true;
+	};
+
+  services.udev = {
+    extraRules = ''
+      SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+    '';
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+networking.firewall.checkReversePath = false;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+   wget
 waybar
 dunst
-#rofi-wayland
-#nwg-launchers
 wofi
 wofi-power-menu
 networkmanagerapplet
@@ -150,17 +166,38 @@ zed-editor
 python313Packages.nomadnet
 kdePackages.spectacle
 qbittorrent
-wireguard-tools protonvpn-gui  
+wireguard-tools
+protonvpn-gui  
 xclip
+wireshark
+ffmpeg
+nodejs
+i2pd-tools
+static-web-server
+rust-analyzer
+google-chrome
+wine
+winetricks
+pcsx2
+libreoffice
+mono
+zotero
+foliate
+legcord
+kdePackages.kdenlive
+python313
+libimobiledevice
+anki
+prismlauncher
+audacity
+jq
 ];
 services.gvfs.enable = true;
 services.udisks2.enable = true;
 
-networking.firewall.checkReversePath = false;
 
-	
+programs.kdeconnect.enable = true;
 programs.steam.enable = true;	
-
 programs.fish.enable = true;
 users.defaultUserShell = pkgs.fish;
 
@@ -172,13 +209,17 @@ programs.neovim = {
   enable = true;
   defaultEditor = true;
 };
-      # Exposing the nessecary ports in order to interact with i2p from outside the container
+
+
+
+# Exposing the nessecary ports in order to interact with i2p from outside the container
       networking.firewall.allowedTCPPorts = [
         7656 # default sam port
         7070 # default web interface port
         4447 # default socks proxy port
         4444 # default http proxy port
-      ];
+     	3923 #copyparty
+     ];
 
       services.i2pd = {
         enable = true;
@@ -188,10 +229,22 @@ programs.neovim = {
           socksProxy.enable = true;
           httpProxy.enable = true;
           sam.enable = true;
-        };
+	};
+#	inTunnels = {
+#	  burgEep = {
+#	   enable = true;
+#	   keys = "burgEep-keys.dat";
+#	   port = 8081;
+#	   inPort = 80;
+#	  };
+#	};
       };
 
-
+#services.static-web-server = {
+#  enable = true;
+#  listen = "127.0.0.1:8081";
+#  root = "/home/burg/Projects/code/I2P_Eepsites/burgEep";
+#};
 
 # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -204,7 +257,10 @@ programs.neovim = {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+#   services.openssh = {
+ #  enable = true;
+  # settings.PermitRootLogin = "yes"; 
+   #};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
