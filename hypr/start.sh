@@ -3,7 +3,7 @@
 swww-daemon&
 
 #swww img ~/.config/hypr/wallpaper.jpg&
-swww img ~/Pictures/nix-Wallpaper.png&
+swww img ~/.config/hypr/nix-Wallpaper.png&
 
 nm-applet --indicator &
 
