@@ -9,4 +9,5 @@ nm-applet --indicator &
 
 waybar &
 protonvpn-app&
+
 dunst
