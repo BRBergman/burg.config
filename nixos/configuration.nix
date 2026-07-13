@@ -95,7 +95,7 @@ fonts.packages = with pkgs; [
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -149,7 +149,6 @@ git
 psmisc
 cava
 kdePackages.dolphin
-discord-ptb
 gcc
 rustc
 cargo
@@ -183,7 +182,6 @@ libreoffice
 mono
 zotero
 foliate
-legcord
 kdePackages.kdenlive
 python313
 libimobiledevice
@@ -191,10 +189,16 @@ anki
 prismlauncher
 audacity
 jq
+wl-clipboard
+xdg-utils
+clipse
+pulseaudio
+killall
+vlc
+discord
 ];
 services.gvfs.enable = true;
 services.udisks2.enable = true;
-
 
 programs.kdeconnect.enable = true;
 programs.steam.enable = true;	
