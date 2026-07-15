@@ -5,6 +5,7 @@
 !hypr/*
 !nixos
 !nixos/*
+!nixos/*/*
 !fish
 !fish/*
 !kitty
