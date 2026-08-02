@@ -9,6 +9,7 @@
     "pulseaudio",
     "battery",
     "clock",
+    "custom/moonphase",
     "custom/power",
   ],
   // Modules configuration
@@ -104,5 +105,10 @@
     "format": "{text}",
     "on-click": "fcitx5-remote -t",
     //"on-click-right": "~/.config/waybar/scripts/fcitx5-menu.sh",
+  },
+  "custom/moonphase": {
+    "interval": 30,
+    "exec": "sh ~/.config/waybar/moon.sh -f",
+    "format": "{text}",
   },
 }

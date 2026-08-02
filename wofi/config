@@ -7,3 +7,4 @@ print_command=true
 insensitive=true
 prompt= Hmm, what do you want to run?
 allow_images=true
+pre_display_exec=true

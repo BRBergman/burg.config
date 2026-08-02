@@ -8,6 +8,12 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "languages": {
+    "Rust": {
+      "inlay_hints": {
+        "show_background": true,
+        "enabled": true
+      }
+    },
     "HTML": {
       "inlay_hints": {
         "enabled": true
