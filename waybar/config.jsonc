@@ -45,7 +45,7 @@
   },
   "clock": {
     //"format": "<span foreground='#C6AAE8'></span> {:%A - %B %d, %Y - %I:%M %p}",
-    "format": "<span  size='14000' foreground='#C6AAE8'></span> {:L%Y年%m月%d日 (%a) %I:%M %p}",
+    "format": "<span  size='14000' foreground='#C6AAE8'></span> {:L%Y/%m/%d (%a) %I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "battery": {
