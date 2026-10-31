@@ -22,3 +22,5 @@
 !clipse/custom_theme.json
 !clipse/config.json
 !clipse
+!home-manager
+!home-manager/*

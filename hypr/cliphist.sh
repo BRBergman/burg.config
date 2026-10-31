@@ -8,7 +8,8 @@
 # note: does NOT put in clipboard, call wl-copy yourself!
 
 # set up thumbnail directory
-thumb_dir="${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/thumbs"
+#thumb_dir="${XDG_CACHE_HOME:-$HOME/.cache}/cliphist/thumbs"
+thumb_dir="/home/burg/.cache/cliphist/thumbs/"
 mkdir -p "$thumb_dir"
 
 cliphist_list="$(cliphist list)"

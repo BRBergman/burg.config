@@ -32,8 +32,9 @@ local terminal    = "kitty"
 local fileManager = "nemo"
 local menu        = "wofi --dmenu --show=drun"
 local screenshot = "hyprshot -m region -m active --clipboard-only --freeze"
-local cliphistory = "cliphist-wofi-img | wl-copy"
--- local cliphistory = "bash ~/.config/hypr/cliphist.sh | wl-copy"
+--local cliphistory = "cliphist-wofi-img | wl-copy"
+local cliphistory = " ~/.config/hypr/cliphist.sh | wl-copy"
+
 local colorPicker = "hyprpicker -a"
 
 -------------------
@@ -49,14 +50,14 @@ hl.on("hyprland.start", function ()
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
-    hl.exec_cmd("awww-daemon& awww img ~/.config/hypr/nix-Wallpaper.png&")
-    hl.exec_cmd("waybar")
+    hl.exec_cmd("awww-daemon &")
+    hl.exec_cmd("awww img ~/.config/hypr/ansydesktop.jpg &")
+    hl.exec_cmd("waybar &")
     hl.exec_cmd("protonvpn-app")
-    hl.exec_cmd("~/.config/hypr/start.sh")
     hl.exec_cmd("wl-clip-persist --clipboard regular &")
     hl.exec_cmd("wl-paste --watch cliphist store")
-
-
+	hl.exec_cmd("dunst")
+	hl.exec_cmd("nm-applet --indicator")
 end)
 
 
@@ -173,6 +174,7 @@ hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "
 hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
+
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
@@ -190,6 +192,12 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 --     border_size = 0,
 --     rounding    = 0,
 -- })
+ hl.window_rule({
+     name = "flaot pdx launcher",
+     match = { initial_title = "Paradox Launcher" },
+     float = true,
+     size = {1280, 720}
+ })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -279,7 +287,7 @@ hl.bind("ALT + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd(screenshot))
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.exec_cmd(colorPicker))
 hl.bind(mainMod .. "+ V", hl.dsp.exec_raw(cliphistory))
-
+hl.bind(mainMod .. "+ F", hl.dsp.window.fullscreen({action = "toggle"}))
 
 --TODO! make alts into alt_l
 -- Move focus with mainMod + arrow keys
@@ -376,3 +384,7 @@ hl.window_rule({
     move  = "20 monitor_h-120",
     float = true,
 })
+
+hl.window_rule({ match = { class = "steam_app_[A-Za-z0-9]+", fullscreen = true }, confine_pointer = true })
+-- make steam games fullscreen
+hl.window_rule({ match = {class = "steam_app_[A-Za-z0-9]+"},fullscreen = true})
